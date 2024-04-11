@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Login from "./App/Screens/LoginScreen/Login";
@@ -5,6 +6,7 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigation from "./App/Navigations/TabNavigation";
+import { useFonts } from "expo-font";
 
 const tokenCache = {
   async getToken(key) {
@@ -25,6 +27,22 @@ const tokenCache = {
 };
 
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({
+    "Outfit": require("./assets/fonts/Outfit-Regular.ttf"),
+    "Outfit-medium": require("./assets/fonts/Outfit-Medium.ttf"),
+    "Outfit-bold": require("./assets/fonts/Outfit-Bold.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <ClerkProvider
       tokenCache={tokenCache}

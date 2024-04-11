@@ -16,7 +16,12 @@ export default function Header() {
             <Image source={{ uri: user?.imageUrl }} style={styles.userImage} />
             <View>
               <Text style={{ color: Colors.WHITE }}>Welcome back,</Text>
-              <Text style={{ color: Colors.WHITE, fontSize: 20 }}>
+              <Text
+                style={{
+                  color: Colors.WHITE,
+                  fontSize: 20,
+                }}
+              >
                 {user.fullName}
               </Text>
             </View>
