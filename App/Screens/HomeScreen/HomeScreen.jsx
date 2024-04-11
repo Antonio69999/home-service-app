@@ -8,8 +8,9 @@ export default function HomeScreen() {
     <View>
       {/* HEADER */}
       <Header></Header>
-      {/* SLIDER */}
-      <Slider></Slider>
+      <View style={{ padding: 20 }}>
+        <Slider></Slider>
+      </View>
     </View>
   );
 }

@@ -15,7 +15,7 @@ const getSlider = async () => {
       }
     }
   `;
-  const result = await request("https://api.spacex.land/graphql/", query);
+  const result = await request(MASTER_URL, query);
   return result;
 };
 
