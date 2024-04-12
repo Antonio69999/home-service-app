@@ -1,13 +1,32 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React, { useEffect } from "react";
-import { useRoute } from "@react-navigation/native";
-import back from "../../../assets/icons/left.png";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
+import GlobalApi from "../../Utils/GlobalApi";
+import BusinessListItem from "./BusinessListItem";
+import Colors from "../../Utils/Colors";
 
 export default function BusinessListByCat() {
   const param = useRoute().params;
+  const navigation = useNavigation();
+
+  const [businessList, setBusinessList] = useState([]);
   useEffect(() => {
-    // console.log("Category", param.category);
-  }, []);
+    param && getBusinesByCategory();
+  }, [param]);
+
+  const getBusinesByCategory = () => {
+    GlobalApi.getBusinessListByCategory(param.category).then((resp) => {
+      setBusinessList(resp.businessLists);
+    });
+  };
 
   return (
     <View style={{ padding: 20, paddingTop: 30 }}>
@@ -18,10 +37,31 @@ export default function BusinessListByCat() {
           gap: 10,
           alignItems: "center",
         }}
+        onPress={() => navigation.goBack()}
       >
-        <Image source={back} style={{ width: 30, height: 30 }}></Image>
+        <Ionicons name="chevron-back" size={24} color="black" />
         <Text style={{ fontSize: 25 }}>{param?.category}</Text>
       </TouchableOpacity>
+      {businessList?.lenght > 0 ? (
+        <FlatList
+          data={businessList}
+          style={{ marginTop: 20 }}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => <BusinessListItem business={item} />}
+        />
+      ) : (
+        <Text
+          style={{
+            fontFamily: "Outfit-Medium",
+            fontSize: 20,
+            textAlign: "center",
+            marginTop: "20%",
+            color: Colors.GRAY,
+          }}
+        >
+          No business found
+        </Text>
+      )}
     </View>
   );
 }

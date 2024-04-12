@@ -2,8 +2,7 @@ import { View, Text, Image, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import { useUser } from "@clerk/clerk-expo";
 import Colors from "../../Utils/Colors";
-import bookmark from "../../../assets/icons/bookmark.png";
-import search from "../../../assets/icons/search.png";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function Header() {
   const { user, isLoading } = useUser();
@@ -29,23 +28,12 @@ export default function Header() {
               </Text>
             </View>
           </View>
-          <Image
-            source={bookmark}
-            style={{ width: 27, height: 27, tintColor: "white" }}
-          />
+          <FontAwesome name="bookmark" size={24} color={Colors.WHITE} />
         </View>
         {/* Search Bar Section */}
         <View style={styles.searchBarContainer}>
           <TextInput placeholder="Search" style={styles.textInput}></TextInput>
-          <Image
-            source={search}
-            style={{
-              ...styles.searchBtn,
-              width: 40,
-              height: 40,
-              tintColor: Colors.PRIMARY,
-            }}
-          />
+          <FontAwesome name="search" size={24} color={Colors.WHITE} />
         </View>
       </View>
     )

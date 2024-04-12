@@ -4,10 +4,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import BookingScreen from "../Screens/BookingScreen/BookingScreen";
 import ProfileScreen from "../Screens/ProfileScreen/ProfileScreen";
 import Colors from "../Utils/Colors";
-import homeIcon from "./../../assets/icons/home.png";
-import bookIcon from "./../../assets/icons/book.png";
-import profilIcon from "./../../assets/icons/profil.png";
 import HomeNavigation from "./HomeNavigation";
+import { Entypo } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,10 +29,7 @@ export default function TabNavigation() {
             </Text>
           ),
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={homeIcon}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <Entypo name="home" size={size} color={color} />
           ),
         }}
       />
@@ -47,10 +43,7 @@ export default function TabNavigation() {
             </Text>
           ),
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={bookIcon}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <Entypo name="calendar" size={size} color={color} />
           ),
         }}
       />
@@ -64,10 +57,7 @@ export default function TabNavigation() {
             </Text>
           ),
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={profilIcon}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <Feather name="user" size={size} color={color} />
           ),
         }}
       />

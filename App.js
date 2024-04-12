@@ -27,13 +27,10 @@ const tokenCache = {
 
 export default function App() {
   let [fontsLoaded] = useFonts({
-    Outif: require("./assets/fonts/Outfit-Regular.ttf"),
+    Outfit: require("./assets/fonts/Outfit-Regular.ttf"),
     "Outfit-Bold": require("./assets/fonts/Outfit-Bold.ttf"),
     "Outfit-Medium": require("./assets/fonts/Outfit-Medium.ttf"),
   });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   // console.log(fontsLoaded);
   // console.log(fontError);
