@@ -22,6 +22,7 @@ export default function Header() {
                 style={{
                   color: Colors.WHITE,
                   fontSize: 20,
+                  fontFamily: "Outfit-Medium",
                 }}
               >
                 {user.fullName}
