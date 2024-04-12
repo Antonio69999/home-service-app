@@ -26,13 +26,17 @@ const tokenCache = {
 };
 
 export default function App() {
-  const [fontsLoaded, fontError] = useFonts({
-    outfit: require("./assets/fonts/Outfit-Regular.ttf"),
-    "outfit-bold": require("./assets/fonts/Outfit-Bold.ttf"),
-    "outfit-medium": require("./assets/fonts/Outfit-Medium.ttf"),
+  let [fontsLoaded] = useFonts({
+    Outif: require("./assets/fonts/Outfit-Regular.ttf"),
+    "Outfit-Bold": require("./assets/fonts/Outfit-Bold.ttf"),
+    "Outfit-Medium": require("./assets/fonts/Outfit-Medium.ttf"),
   });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
-  console.log(fontsLoaded, fontError);
+  // console.log(fontsLoaded);
+  // console.log(fontError);
 
   return (
     <ClerkProvider
