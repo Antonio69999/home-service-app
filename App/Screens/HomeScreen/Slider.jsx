@@ -11,7 +11,7 @@ export default function Slider() {
 
   const getSliders = () => {
     GlobalApi.getSlider().then((resp) => {
-      console.log("Full response", resp);
+      // console.log("Full response", resp);
       setSliders(resp?.sliders);
     });
   };
