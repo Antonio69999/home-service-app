@@ -29,6 +29,7 @@ export default function Categories() {
                 style={{ width: 30, height: 30 }}
               ></Image>
             </View>
+            <Text style={{ marginTop: 5 }}>{item?.name}</Text>
           </View>
         )}
       ></FlatList>
