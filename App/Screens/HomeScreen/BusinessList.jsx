@@ -13,7 +13,7 @@ export default function BusinessList() {
 
   const getBusinessList = async () => {
     GlobalApi.getBusinessList().then((res) => {
-      console.log(res);
+      // console.log(res);
       setBusinessList(res.businessLists);
     });
   };
