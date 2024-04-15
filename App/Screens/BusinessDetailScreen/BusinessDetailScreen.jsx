@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -13,11 +14,13 @@ import Colors from "../../Utils/Colors";
 import { Entypo } from "@expo/vector-icons";
 import BusinessPhoto from "./BusinessPhoto";
 import BusinessAboutMe from "./BusinessAboutMe";
+import BookingModal from "./BookingModal";
 
 export default function BusinessDetailScreen() {
   const param = useRoute().params;
   const [business, setBusiness] = useState(param.business);
   const navigation = useNavigation();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {});
   return (
@@ -107,19 +110,22 @@ export default function BusinessDetailScreen() {
               style={{
                 textAlign: "center",
                 fontFamily: "Outfit-Medium",
-                colors: Colors.PRIMARY,
+                color: Colors.PRIMARY,
                 fontSize: 18,
               }}
             >
               Message
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bookingBtn}>
+          <TouchableOpacity
+            style={styles.bookingBtn}
+            onPress={() => setShowModal(true)}
+          >
             <Text
               style={{
                 textAlign: "center",
                 fontFamily: "Outfit-Medium",
-                colors: Colors.WHITE,
+                color: Colors.WHITE,
                 fontSize: 18,
               }}
             >
@@ -127,6 +133,13 @@ export default function BusinessDetailScreen() {
             </Text>
           </TouchableOpacity>
         </View>
+        {/* Booking Screen Modal */}
+        <Modal animationType="slide" visible={showModal}>
+          <BookingModal
+            businessId={business.id}
+            hideModal={() => setShowModal(false)}
+          />
+        </Modal>
       </View>
     )
   );

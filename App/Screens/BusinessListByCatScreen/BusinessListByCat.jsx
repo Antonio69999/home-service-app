@@ -1,21 +1,13 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 import GlobalApi from "../../Utils/GlobalApi";
 import BusinessListItem from "./BusinessListItem";
 import Colors from "../../Utils/Colors";
+import BackBtn from "../../Components/BackBtn";
 
 export default function BusinessListByCat() {
   const param = useRoute().params;
-  const navigation = useNavigation();
 
   const [businessList, setBusinessList] = useState([]);
   useEffect(() => {
@@ -30,18 +22,7 @@ export default function BusinessListByCat() {
 
   return (
     <View style={{ padding: 20, paddingTop: 30 }}>
-      <TouchableOpacity
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 10,
-          alignItems: "center",
-        }}
-        onPress={() => navigation.goBack()}
-      >
-        <Ionicons name="chevron-back" size={24} color="black" />
-        <Text style={{ fontSize: 25 }}>{param?.category}</Text>
-      </TouchableOpacity>
+      <BackBtn title={param.category}></BackBtn>
       {businessList?.length > 0 ? (
         <FlatList
           data={businessList}
