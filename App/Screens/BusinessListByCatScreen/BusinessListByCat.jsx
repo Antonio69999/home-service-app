@@ -42,7 +42,7 @@ export default function BusinessListByCat() {
         <Ionicons name="chevron-back" size={24} color="black" />
         <Text style={{ fontSize: 25 }}>{param?.category}</Text>
       </TouchableOpacity>
-      {businessList?.lenght > 0 ? (
+      {businessList?.length > 0 ? (
         <FlatList
           data={businessList}
           style={{ marginTop: 20 }}
