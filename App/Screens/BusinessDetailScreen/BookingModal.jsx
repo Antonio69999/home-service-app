@@ -16,6 +16,7 @@ import Colors from "../../Utils/Colors";
 import Heading from "../../Components/Heading";
 import GlobalApi from "../../Utils/GlobalApi";
 import { useUser } from "@clerk/clerk-expo";
+import moment from "moment";
 
 export default function BookingModal({ businessId, hideModal }) {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -58,7 +59,7 @@ export default function BookingModal({ businessId, hideModal }) {
       userName: user?.fullName,
       userEmail: user?.primaryEmailAddress.emailAddress,
       time: selectedTime,
-      date: selectedDate,
+      date: moment(selectedDate).format("DD-MM-YYYY"),
       note: note,
       businessId: businessId,
     };
@@ -67,6 +68,7 @@ export default function BookingModal({ businessId, hideModal }) {
         .then((resp) => {
           console.log("resp", resp);
           ToastAndroid.show("Booking Created Successfully", ToastAndroid.LONG);
+          hideModal();
         })
         .catch((error) => {
           console.error("Error creating booking: ", error);
