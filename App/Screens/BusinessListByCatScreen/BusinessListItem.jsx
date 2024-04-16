@@ -3,9 +3,14 @@ import React from "react";
 import Colors from "../../Utils/Colors";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
 
-export default function BusinessListItem({ business }) {
+export default function BusinessListItem({ business, booking }) {
+  // console.log(business);
   const navigation = useNavigation();
+  if (!business) {
+    return null; // or return a loading spinner, or some placeholder content
+  }
 
   return (
     <TouchableOpacity
@@ -17,7 +22,9 @@ export default function BusinessListItem({ business }) {
         <Text
           style={{ fontFamily: "Outfit", color: Colors.GRAY, fontSize: 15 }}
         >
-          {business.contactPerson}
+          {business.contactPerson
+            ? business.contactPerson
+            : "No contact person available"}
         </Text>
         <Text style={{ fontFamily: "Outfit-Bold", fontSize: 19 }}>
           {business.name}
@@ -33,6 +40,7 @@ export default function BusinessListItem({ business }) {
           />
           {business.adress}
         </Text>
+        {/* {booking?.id ? <Text>Show Booking</Text> : null} */}
       </View>
     </TouchableOpacity>
   );
